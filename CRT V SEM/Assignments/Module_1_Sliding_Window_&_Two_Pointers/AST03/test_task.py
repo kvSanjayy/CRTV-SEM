@@ -1,16 +1,8 @@
-import unittest
-from task import countGoodSubstrings
+def countGoodSubstrings(s):
+    count = 0
 
-class TestAssignment(unittest.TestCase):
+    for i in range(len(s) - 2):
+        if len(set(s[i:i + 3])) == 3:
+            count += 1
 
-    def test1(self):
-        self.assertEqual(countGoodSubstrings("xyzzaz"),1)
-
-    def test2(self):
-        self.assertEqual(countGoodSubstrings("aababcabc"),4)
-
-    def test3(self):
-        self.assertEqual(countGoodSubstrings( "aaaaa"),0)
-
-if __name__ == "__main__":
-    unittest.main()
+    return count

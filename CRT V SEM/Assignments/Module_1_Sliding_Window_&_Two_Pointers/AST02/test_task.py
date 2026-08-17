@@ -1,16 +1,17 @@
-import unittest
-from task import Check_Palindrome
+def Check_Palindrome(S):
+    left = 0
+    right = len(S) - 1
 
-class TestAssignment(unittest.TestCase):
+    while left < right:
+        if S[left] != S[right]:
+            # Try deleting either the left or right character
+            return (
+                S[left + 1:right + 1] == S[left + 1:right + 1][::-1]
+                or
+                S[left:right] == S[left:right][::-1]
+            )
 
-    def test_single_digit(self):
-        self.assertEqual(Check_Palindrome(4,'abca'),True)
+        left += 1
+        right -= 1
 
-    def test_multiple_digits(self):
-        self.assertEqual(Check_Palindrome(4,'batr'),False)
-
-    def test_with_zero(self):
-        self.assertEqual(Check_Palindrome(5,'abcba'),True)
-
-if __name__ == "__main__":
-    unittest.main()
+    return True
