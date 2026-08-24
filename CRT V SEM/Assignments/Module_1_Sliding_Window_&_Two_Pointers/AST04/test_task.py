@@ -1,23 +1,16 @@
-def Pair_Sum(arr, target):
-    n = len(arr)
+import unittest
+from task import pairInSortedRotated
 
-    # Find the index of the smallest element (pivot)
-    pivot = 0
-    for i in range(1, n):
-        if arr[i] < arr[pivot]:
-            pivot = i
+class TestAssignment(unittest.TestCase):
 
-    left = pivot
-    right = (pivot - 1 + n) % n
+    def test_single_digit(self):
+        self.assertEqual(pairInSortedRotated([11, 15, 6, 8, 9, 10],16),True)
 
-    while left != right:
-        current_sum = arr[left] + arr[right]
+    def test_multiple_digits(self):
+        self.assertEqual(pairInSortedRotated([11, 11, 15, 26, 38, 9, 10],35),True)
 
-        if current_sum == target:
-            return True
-        elif current_sum < target:
-            left = (left + 1) % n
-        else:
-            right = (right - 1 + n) % n
+    def test_with_zero(self):
+        self.assertEqual(pairInSortedRotated([9, 10, 10, 11, 15, 26, 38],45),False)
 
-    return False
+if __name__ == "__main__":
+    unittest.main()

@@ -1,23 +1,32 @@
-def Pair_Sum(arr, target):
+def pairSum(arr, target):
     n = len(arr)
 
     # Find the index of the smallest element (pivot)
     pivot = 0
-    for i in range(1, n):
-        if arr[i] < arr[pivot]:
-            pivot = i
+    for i in range(n - 1):
+        if arr[i] > arr[i + 1]:
+            pivot = i + 1
+            break
 
+    # Two pointers
     left = pivot
     right = (pivot - 1 + n) % n
 
     while left != right:
-        current_sum = arr[left] + arr[right]
+        total = arr[left] + arr[right]
 
-        if current_sum == target:
+        if total == target:
             return True
-        elif current_sum < target:
+        elif total < target:
             left = (left + 1) % n
         else:
             right = (right - 1 + n) % n
 
     return False
+
+
+if __name__ == '__main__':
+    arr = list(map(int, input().split()))
+    target = int(input())
+
+    print(pairSum(arr, target))
